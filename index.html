@@ -1,238 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <title>Movies + Tools</title>
-
 <style>
-
-body{
-margin:0;
-font-family:Arial, Helvetica, sans-serif;
-background:#f1f3f4;
-}
-
-/* tab bar */
-
-.tabBar{
-display:flex;
-background:#e8eaed;
-padding:8px 8px 0 8px;
-border-bottom:1px solid #d2d2d2;
-}
-
-.tab{
-padding:10px 18px;
-background:#dadce0;
-margin-right:6px;
-border-radius:8px 8px 0 0;
-cursor:pointer;
-font-size:14px;
-color:#202124;
-}
-
-.tab.active{
-background:white;
-border-bottom:1px solid white;
-}
-
-/* tab pages */
-
-.tabPage{
-display:none;
-}
-
-.tabPage.active{
-display:block;
-}
-
-/* ---------- MOVIES PAGE ---------- */
-
-.header{
-height:64px;
-background:white;
-display:flex;
-align-items:center;
-padding:0 20px;
-box-shadow:0 1px 3px rgba(0,0,0,0.08);
-}
-
-.logo{
-font-size:18px;
-color:#202124;
-font-weight:500;
-}
-
-.container{
-display:flex;
-justify-content:center;
-margin-top:90px;
-}
-
-.card{
-background:white;
-width:700px;
-padding:35px;
-border-radius:10px;
-box-shadow:0 2px 10px rgba(0,0,0,0.08);
-display:flex;
-justify-content:space-between;
-align-items:center;
-}
-
-.left{
-width:60%;
-}
-
-select{
-width:100%;
-padding:12px;
-border-radius:6px;
-border:1px solid #dadce0;
-margin-bottom:12px;
-font-size:14px;
-}
-
-.tip{
-font-size:13px;
-color:#5f6368;
-margin-bottom:20px;
-}
-
-button{
-background:#1a73e8;
-color:white;
-border:none;
-padding:12px 22px;
-border-radius:6px;
-cursor:pointer;
-}
-
-button:hover{
-background:#1669c1;
-}
-
-.previewBox{
-width:120px;
-height:120px;
-border-radius:16px;
-border:1px solid #e0e0e0;
-display:flex;
-align-items:center;
-justify-content:center;
-background:white;
-}
-
-.previewBox img{
-width:64px;
-height:64px;
-}
-
-/* ---------- IMDB FINDER ---------- */
-
-.page{
-max-width:850px;
-margin:auto;
-background:white;
-padding:40px 60px;
-box-shadow:0 2px 8px rgba(0,0,0,0.15);
-border-radius:6px;
-margin-top:40px;
-}
-
-h1{
-font-weight:500;
-margin-top:0;
-color:#202124;
-}
-
-input{
-padding:10px 12px;
-width:320px;
-font-size:15px;
-border-radius:4px;
-border:1px solid #dadce0;
-outline:none;
-}
-
-input:focus{
-border-color:#1a73e8;
-}
-
-.searchBtn{
-background:#1a73e8;
-color:white;
-border:none;
-padding:9px 14px;
-margin-left:6px;
-}
-
-.copyBtn{
-margin-left:10px;
-font-size:13px;
-padding:6px 10px;
-}
-
-.watchBtn{
-margin-left:10px;
-font-size:13px;
-padding:6px 10px;
-background:#34a853;
-}
-
-.watchBtn:hover{
-background:#2c8c46;
-}
-
-.movie{
-padding:16px 0;
-border-bottom:1px solid #e0e0e0;
-display:flex;
-gap:15px;
-align-items:center;
-}
-
-.poster{
-width:70px;
-border-radius:4px;
-}
-
-a{
-color:#1a73e8;
-text-decoration:none;
-}
-
-a:hover{
-text-decoration:underline;
-}
-
+body::before{content:"";position:fixed;top:0;left:0;width:100%;height:200%;background-image:radial-gradient(rgba(110,203,255,.15) 1px,transparent 1px);background-size:30px 30px;animation:scrollDots 60s linear infinite;pointer-events:none;z-index:-1}
+@keyframes scrollDots{0%{transform:translateY(0)}100%{transform:translateY(-50%)}}
+:root{--bg:#000;--accent:#6ecbff;--accent-glow:rgba(110,203,255,.35);--text-primary:#fff;--text-dim:#94a3b8;--border:rgba(110,203,255,.08);--card-bg:rgba(255,255,255,.03);--font:'Courier New',monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text-primary);font-family:var(--font);overflow-x:hidden}
+.tabBar{display:flex;background:rgba(255,255,255,.03);border-bottom:1px solid var(--border);padding:10px 12px 0;backdrop-filter:blur(8px)}
+.tab{padding:12px 20px;margin-right:8px;border-radius:10px 10px 0 0;cursor:pointer;font-size:13px;color:var(--text-dim);background:transparent;transition:.2s}
+.tab:hover{color:var(--accent)}
+.tab.active{color:#000;background:var(--accent);font-weight:bold;box-shadow:0 0 15px var(--accent-glow)}
+.tabPage{display:none}.tabPage.active{display:block}
+.header{height:70px;display:flex;align-items:center;padding:0 30px;border-bottom:1px solid var(--border);background:rgba(255,255,255,.02);backdrop-filter:blur(12px)}
+.logo{font-size:20px;color:var(--accent);text-shadow:0 0 10px var(--accent-glow);letter-spacing:2px}
+.container{display:flex;flex-direction:column;align-items:center;margin-top:120px}
+.card{background:var(--card-bg);width:720px;padding:40px;border-radius:16px;border:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:30px;backdrop-filter:blur(12px)}
+.left{width:60%}
+select,input,textarea{width:100%;padding:12px;border-radius:8px;border:1px solid var(--border);background:#0a0a0a;color:#fff;font-family:var(--font)}
+select option{background:#0a0a0a;color:#fff}
+button{background:var(--accent);color:#000;border:none;padding:12px 24px;border-radius:8px;cursor:pointer;font-family:var(--font);font-weight:bold;transition:.2s;margin-top:.3rem}
+button:hover{transform:translateY(-1px);box-shadow:0 0 15px var(--accent-glow)}
+.previewBox{width:120px;height:120px;border-radius:16px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center}
+.previewBox img{width:64px;height:64px}
+.quoteBox{margin-top:30px;font-size:14px;color:var(--text-dim);text-align:center;min-height:60px;opacity:1;transition:opacity .6s ease}
+.quoteBox.fade{opacity:0}
+.page{max-width:900px;margin:auto;background:var(--card-bg);padding:50px 60px;border-radius:16px;border:1px solid var(--border);margin-top:50px}
+.movie{padding:18px 0;border-bottom:1px solid var(--border);display:flex;gap:18px;align-items:center}
+.poster{width:70px;border-radius:6px}
+a{color:var(--accent);text-decoration:none}
+.settings{max-width:700px;margin:auto;margin-top:100px;display:flex;flex-direction:column;gap:25px}
+.settings h2{color:var(--accent)}
+.settingCard{background:var(--card-bg);border:1px solid var(--border);padding:25px;border-radius:12px}
+.quoteItem{display:flex;gap:10px;margin-bottom:10px}
+.quoteItem button{padding:6px 10px;font-size:12px}
+.colorPreset{width:32px;height:32px;border-radius:6px;cursor:pointer;border:1px solid var(--border);display:inline-block;margin-right:5px;vertical-align:middle}
 </style>
 </head>
-
 <body>
-
 <div class="tabBar">
 <div class="tab active" onclick="switchTab('movies',this)">Movies + Shows</div>
 <div class="tab" onclick="switchTab('imdb',this)">IMDb ID Finder</div>
+<div class="tab" onclick="switchTab('settings',this)">Settings</div>
 </div>
-
-<!-- MOVIES TAB -->
-
 <div id="movies" class="tabPage active">
-
-<div class="header">
-<div class="logo">Movies + Shows</div>
-</div>
-
+<div class="header"><div class="logo">Movies + Shows</div></div>
 <div class="container">
 <div class="card">
-
 <div class="left">
-
 <select id="siteSelect" onchange="updatePreview()">
-<option value="https://yflix.to">Yflix (BEST)</option>
-<option value="https://tv.vynx.cc">Flixitor (Great)</option>
+<option value="https://tv.vynx.cc">Flyx (Best)</option>
+<option value="https://yflix.to">Yflix (Great)</option>
 <option value="https://flixtor.mov">Flixitor (Great)</option>
 <option value="https://movhub.ws">Mov Collection (Great)</option>
 <option value="https://1movies.bz">1Movies (Great)</option>
@@ -241,186 +61,77 @@ text-decoration:underline;
 <option value="https://novashow.vip">Nova Show (Mid)</option>
 <option value="https://getroned.online">Getroned (CAUTION ADVISED)</option>
 </select>
-
-<div class="tip" id="tipText"></div>
-
+<div id="tipText"></div>
 <button onclick="openSite()">Open</button>
-
 </div>
-
-<div class="previewBox">
-<img id="previewIcon">
+<div class="previewBox"><img id="previewIcon"></div>
 </div>
-
+<div class="quoteBox" id="quoteBox"></div>
 </div>
 </div>
-
-</div>
-
-<!-- IMDB TAB -->
-
 <div id="imdb" class="tabPage">
-
 <div class="page">
-
-<h1>!WARNING! POPUPS</h1>
-
+<h1>WARNING POPUPS</h1>
 <input id="searchBox" placeholder="Search movie title..." onkeypress="if(event.key==='Enter') searchMovie()">
-<button class="searchBtn" onclick="searchMovie()">Search</button>
-
+<button onclick="searchMovie()">Search</button>
 <div id="results"></div>
-
 </div>
-
 </div>
-
-<script>
-
-/* tab switching */
-
-function switchTab(id,el){
-
-document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
-el.classList.add("active");
-
-document.querySelectorAll(".tabPage").forEach(p=>p.classList.remove("active"));
-document.getElementById(id).classList.add("active");
-
-}
-
-/* movies script */
-
-const tips={
-"https://novashow.vip":
-"Just dont use the novavip server when picking servers so there are no pop ups.",
-
-"https://kaitovault.com":
-"Very nice UI with a great catalog. Minimal Ads: when you click on a movie while its playing there will be a popup.",
-
-"https://cinema.bz":
-"Very good site, probably the second best. AD FREE WITH NETFLIX LIKE UI",
-
-"https://getroned.online":
-"Insanly good, search and go, great [NO ADS]"
-};
-
-function updatePreview(){
-
-let url=document.getElementById("siteSelect").value;
-let domain=(new URL(url)).hostname;
-
-document.getElementById("previewIcon").src=
-"https://www.google.com/s2/favicons?domain="+domain+"&sz=128";
-
-document.getElementById("tipText").textContent=tips[url];
-
-}
-
-function openSite(){
-
-let url=document.getElementById("siteSelect").value;
-
-let tab=window.open("about:blank","_blank");
-
-tab.document.write(`
-<html>
-<head>
-<title>Movies</title>
-<style>
-body{margin:0;overflow:hidden;background:white;}
-iframe{border:none;width:100vw;height:100vh;}
-</style>
-</head>
-<body>
-<iframe src="${url}"></iframe>
-</body>
-</html>
-`);
-
-tab.document.close();
-
-}
-
-updatePreview();
-
-/* imdb finder */
-
-const API_KEY="d9b52b38";
-
-async function searchMovie(){
-
-const query=document.getElementById("searchBox").value.trim();
-if(!query) return;
-
-const url=`https://www.omdbapi.com/?apikey=${API_KEY}&s=${encodeURIComponent(query)}`;
-
-const res=await fetch(url);
-const data=await res.json();
-
-const results=document.getElementById("results");
-results.innerHTML="";
-
-if(!data.Search){
-results.innerHTML="<p>No results found</p>";
-return;
-}
-
-data.Search.forEach(movie=>{
-
-const poster=movie.Poster!=="N/A"?movie.Poster:"";
-
-const div=document.createElement("div");
-div.className="movie";
-
-div.innerHTML=`
-<img class="poster" src="${poster}">
+<div id="settings" class="tabPage">
+<div class="settings">
+<div class="settingCard">
+<h2>Theme Color</h2>
+<input type="color" id="accentPicker">
 <div>
-<strong>${movie.Title}</strong> (${movie.Year})<br>
-IMDb ID: <span>${movie.imdbID}</span>
-<button class="copyBtn" onclick="copyID('${movie.imdbID}')">📋 Copy</button>
-<button class="watchBtn" onclick="watchMovie('${movie.imdbID}')">▶ Watch</button>
-<br>
-<a href="https://www.imdb.com/title/${movie.imdbID}/" target="_blank">Open on IMDb</a>
+<div class="colorPreset" style="background:#6ecbff" onclick="setAccent('#6ecbff')"></div>
+<div class="colorPreset" style="background:#22c55e" onclick="setAccent('#22c55e')"></div>
+<div class="colorPreset" style="background:#facc15" onclick="setAccent('#facc15')"></div>
+<div class="colorPreset" style="background:#f43f5e" onclick="setAccent('#f43f5e')"></div>
 </div>
-`;
-
-results.appendChild(div);
-
-});
-
-}
-
-function copyID(id){
-navigator.clipboard.writeText(id);
-alert("Copied IMDb ID: "+id);
-}
-
-function watchMovie(id){
-
-let url=`https://vidlink.pro/movie/${id}?autoplay=true`;
-
-let tab=window.open("about:blank","_blank");
-
-tab.document.write(`
-<html>
-<head>
-<title>Watch Movie</title>
-<style>
-body{margin:0;background:black;overflow:hidden;}
-iframe{border:none;width:100vw;height:100vh;}
-</style>
-</head>
-<body>
-<iframe src="${url}" allowfullscreen></iframe>
-</body>
-</html>
-`);
-
-tab.document.close();
-
-}
-
+</div>
+<div class="settingCard">
+<h2>Quotes</h2>
+<div id="quoteList"></div>
+<textarea id="newQuote" placeholder="new quote"></textarea>
+<button onclick="addQuote()">Add Quote</button>
+</div>
+<div class="settingCard">
+<h2>Key Shortcuts</h2>
+<label>Alt+ → Movies: <input id="shortcutMovies" value="1"></label><br>
+<label>Alt+ → IMDb: <input id="shortcutIMDb" value="2"></label><br>
+<label>Alt+ → Settings: <input id="shortcutSettings" value="3"></label><br>
+<button onclick="saveShortcuts()">Save Shortcuts</button>
+</div>
+</div>
+</div>
+<script>
+function switchTab(id,el){document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));el.classList.add("active");document.querySelectorAll(".tabPage").forEach(p=>p.classList.remove("active"));document.getElementById(id).classList.add("active")}
+let tips={"https://novashow.vip":"Just dont use novavip server","https://kaitovault.com":"Nice UI minimal ads","https://cinema.bz":"Good site AD FREE","https://getroned.online":"Great NO ADS"}
+function updatePreview(){let url=document.getElementById("siteSelect").value;document.getElementById("previewIcon").src="https://www.google.com/s2/favicons?domain="+(new URL(url)).hostname+"&sz=128"}
+function openSite(){let url=document.getElementById("siteSelect").value;let t=window.open("about:blank","_blank");t.document.write(`<html><body style="margin:0"><iframe src="${url}" style="border:none;width:100vw;height:100vh"></iframe></body></html>`);t.document.close()}
+updatePreview()
+let quotes=JSON.parse(localStorage.getItem("quotes"))||["Default quote"]
+const quoteBox=document.getElementById("quoteBox")
+function ensureQuote(){if(quotes.length===0)quotes=["Default quote"]}
+let qIndex=Math.floor(Math.random()*quotes.length)
+function cycleQuote(){quoteBox.classList.add("fade");setTimeout(()=>{qIndex=(qIndex+1)%quotes.length;quoteBox.innerHTML=quotes[qIndex];quoteBox.classList.remove("fade")},600)}
+quoteBox.innerHTML=quotes[qIndex];setInterval(cycleQuote,6000)
+function renderQuotes(){ensureQuote();let l=document.getElementById("quoteList");l.innerHTML="";quotes.forEach((q,i)=>{let r=document.createElement("div");r.className="quoteItem";r.innerHTML=`<input value="${q}" onchange="editQuote(${i},this.value)"><button onclick="deleteQuote(${i})">Delete</button>`;l.appendChild(r)});localStorage.setItem("quotes",JSON.stringify(quotes))}
+function addQuote(){let v=document.getElementById("newQuote").value;if(!v)return;quotes.push(v);document.getElementById("newQuote").value="";renderQuotes()}
+function editQuote(i,v){quotes[i]=v;localStorage.setItem("quotes",JSON.stringify(quotes))}
+function deleteQuote(i){quotes.splice(i,1);ensureQuote();renderQuotes()}
+renderQuotes()
+function setAccent(c){document.documentElement.style.setProperty("--accent",c);document.documentElement.style.setProperty("--accent-glow",c+"55");document.getElementById("accentPicker").value=c;localStorage.setItem("accent",c)}
+let saved=localStorage.getItem("accent");if(saved)setAccent(saved)
+document.getElementById("accentPicker").addEventListener("input",e=>setAccent(e.target.value))
+const API_KEY="d9b52b38"
+async function searchMovie(){const q=document.getElementById("searchBox").value.trim();if(!q)return;const res=await fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=${encodeURIComponent(q)}`);const data=await res.json();const r=document.getElementById("results");r.innerHTML="";if(!data.Search){r.innerHTML="No results";return}data.Search.forEach(m=>{const p=m.Poster!=="N/A"?m.Poster:"";const d=document.createElement("div");d.className="movie";d.innerHTML=`<img class="poster" src="${p}"><div><strong>${m.Title}</strong> (${m.Year})<br>IMDb ID: ${m.imdbID} <button onclick="copyID('${m.imdbID}')">Copy</button> <button onclick="watchMovie('${m.imdbID}')">Watch</button></div>`;r.appendChild(d)})}
+function copyID(id){navigator.clipboard.writeText(id);alert("Copied "+id)}
+function watchMovie(id){let url=`https://vidlink.pro/movie/${id}?autoplay=true`;let t=window.open("about:blank","_blank");t.document.write(`<html><body style="margin:0;background:black"><iframe src="${url}" allowfullscreen style="border:none;width:100vw;height:100vh"></iframe></body></html>`);t.document.close()}
+let shortcuts={movies:"1",imdb:"2",settings:"3"}
+function saveShortcuts(){shortcuts.movies=document.getElementById("shortcutMovies").value;shortcuts.imdb=document.getElementById("shortcutIMDb").value;shortcuts.settings=document.getElementById("shortcutSettings").value;localStorage.setItem("shortcuts",JSON.stringify(shortcuts))}
+let savedS=JSON.parse(localStorage.getItem("shortcuts"));if(savedS){shortcuts=savedS;document.getElementById("shortcutMovies").value=shortcuts.movies;document.getElementById("shortcutIMDb").value=shortcuts.imdb;document.getElementById("shortcutSettings").value=shortcuts.settings}
+document.addEventListener("keydown",e=>{if(e.altKey){if(e.key===shortcuts.movies)switchTab('movies',document.querySelector('.tabBar .tab:nth-child(1)'));if(e.key===shortcuts.imdb)switchTab('imdb',document.querySelector('.tabBar .tab:nth-child(2)'));if(e.key===shortcuts.settings)switchTab('settings',document.querySelector('.tabBar .tab:nth-child(3)'))}})
 </script>
-
 </body>
 </html>
